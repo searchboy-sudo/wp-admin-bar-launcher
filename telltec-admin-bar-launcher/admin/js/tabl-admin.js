@@ -29,4 +29,38 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
+	$( window ).load(function() {
+
+		const tablAjax = {};
+
+		// when the launcher query changes 
+		$("#tabl-query").change(function() { 
+
+			console.log("DBG query changed");   
+							  
+			// get list of targets using Ajax
+			$.post(ajaxurl, {
+					//_ajax_nonce: tablAjax.nonce,     //nonce
+					action: "get_launcher_targets",            //action
+					title: this.value                  //data
+				}, function ( data ) {
+
+					// process the received targets
+					processResponse ( data );
+
+				}
+			);
+		
+
+		});
+
+		/*
+		* Process the received targets
+		*/
+		function processResponse( response ) {
+			console.log("DBG response received", response);
+		}
+
+	});
+
 })( jQuery );

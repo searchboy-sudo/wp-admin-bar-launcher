@@ -103,22 +103,13 @@ class Tabl_Admin {
 
 	public function add_launcher_to_admin_bar($admin_bar) {
 
-		/* $admin_bar->add_menu( array(
-			'id'    => 'my-item',
-			'title' => 'My Item',
-			'href'  => '#',
-			'meta'  => array(
-				'title' => __('My Item'),            
-			),
-		)); */
-
 		$admin_bar->add_menu( array(
 			'id' 		=> 'wpse-form-in-admin-bar',
 			'parent' 	=> 'top-secondary',
 			'title' => 
 				'
 					<form class="tabl__form">
-						<input type="text" placeholder="Your target" class="tabl__query" />
+						<input type="text" placeholder="Your target" id="tabl-query" class="tabl__query" />
 						<input type="submit" value="Jump to" class="tabl__submit" />
 					</form>
 				'
@@ -126,5 +117,15 @@ class Tabl_Admin {
 		));
 		
 	} // end add_launcher_to_admin_bar
+
+
+	public function get_launcher_targets() {
+
+		$title = $_POST['title'];
+
+		// send back response to be received by Ajax
+		wp_send_json( "The user had sent: " . $_POST['title'] );
+
+	} // end get_launcher_targets
 
 }

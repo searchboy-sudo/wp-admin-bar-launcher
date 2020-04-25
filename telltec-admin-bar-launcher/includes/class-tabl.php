@@ -156,7 +156,9 @@ class Tabl {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		
 		$this->loader->add_action( 'admin_bar_menu', $plugin_admin, 'add_launcher_to_admin_bar', 100 );
+		$this->loader->add_action( 'wp_ajax_get_launcher_targets', $plugin_admin, 'get_launcher_targets' );
 
 	}
 
