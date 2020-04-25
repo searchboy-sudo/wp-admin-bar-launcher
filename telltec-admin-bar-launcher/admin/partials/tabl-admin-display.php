@@ -14,6 +14,3 @@
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
-
-<h1>Admin Bar Launcher</h1>
-<p>Is so cool 😎</p>

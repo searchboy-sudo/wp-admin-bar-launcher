@@ -31,8 +31,6 @@
 
 	$( window ).load(function() {
 
-		const tablAjax = {};
-
 		// when the launcher query changes 
 		$("#tabl-query").change(function() { 
 
@@ -40,9 +38,10 @@
 							  
 			// get list of targets using Ajax
 			$.post(ajaxurl, {
-					//_ajax_nonce: tablAjax.nonce,     //nonce
-					action: "get_launcher_targets",            //action
-					title: this.value                  //data
+
+					action: "get_launcher_targets",
+					user_query: this.value   
+					               
 				}, function ( data ) {
 
 					// process the received targets

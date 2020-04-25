@@ -122,32 +122,45 @@ class Tabl_Admin {
 	public function get_launcher_targets() {
 
 		// given title by user
-		$title = $_POST['title'];
+		$user_query = $_POST['user_query'];
 
 		// query for possible targets
+		$possible_targets = [];
 		$query_args = array(
 			'post_type' => 'any',
 			'posts_per_page' => -1
 		);
 		$query = new WP_Query( $query_args );
-		$possible_targets = [];
+
+		// if there are targets
 		if ( $query->have_posts() ) {
+
 			$answer = 'has posts';
+
+			// get and store the needed data in an array
+			$count = 1;
 			while ( $query->have_posts() ) {
 				$query->the_post();
-				array_push( $possible_targets, get_the_title() );
-			}
-		} else {
-			// no posts found
-			$answer = 'no posts';
-		}
-		wp_reset_postdata();
-		//die($query);
 
-		
+				$possible_targets[$count]['title'] = get_the_title();
+				$possible_targets[$count]['permalink'] = get_the_permalink();
+				$possible_targets[$count]['post_type'] = get_post_type();
+
+				$count++;
+			}
+
+		} else {
+
+			// no targets found
+			$answer = 'no posts';
+
+		}
+
+		// reset queries
+		wp_reset_postdata();
 
 		// send back response to be received by Ajax
-		wp_send_json( "Possible targets " . $answer . " " . json_encode($possible_targets) );
+		wp_send_json( json_encode($possible_targets) );
 
 	} // end get_launcher_targets
 
