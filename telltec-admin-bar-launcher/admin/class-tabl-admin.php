@@ -118,7 +118,7 @@ class Tabl_Admin {
 						<div class="typeahead__container">
 							<div class="typeahead__field">
 								<div class="typeahead__query">
-									<input class="js-typeahead tabl__query"
+									<input id="tabl-query" class="js-typeahead tabl__query"
 										name="q"
 										autocomplete="off">
 								</div>
