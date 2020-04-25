@@ -121,10 +121,33 @@ class Tabl_Admin {
 
 	public function get_launcher_targets() {
 
+		// given title by user
 		$title = $_POST['title'];
 
+		// query for possible targets
+		$query_args = array(
+			'post_type' => 'any',
+			'posts_per_page' => -1
+		);
+		$query = new WP_Query( $query_args );
+		$possible_targets = [];
+		if ( $query->have_posts() ) {
+			$answer = 'has posts';
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				array_push( $possible_targets, get_the_title() );
+			}
+		} else {
+			// no posts found
+			$answer = 'no posts';
+		}
+		wp_reset_postdata();
+		//die($query);
+
+		
+
 		// send back response to be received by Ajax
-		wp_send_json( "The user had sent: " . $_POST['title'] );
+		wp_send_json( "Possible targets " . $answer . " " . json_encode($possible_targets) );
 
 	} // end get_launcher_targets
 
