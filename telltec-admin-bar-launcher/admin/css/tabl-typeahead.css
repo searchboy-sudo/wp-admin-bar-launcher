@@ -1,0 +1,46 @@
+#tabl .typeahead__container + .typeahead__backdrop {
+    display: none !important;
+}
+
+#tabl .typeahead__container.backdrop + .typeahead__backdrop {
+    display: block !important;
+}
+
+#tabl .typeahead__backdrop {
+    opacity: 0.7;
+    background-color: black;
+}
+
+#tabl .typeahead__result {
+    position: absolute;
+    top: 32px;
+    left: 10px;
+    background: white;
+}
+
+#tabl .typeahead__list {
+    display: flex;
+    flex-direction: column;
+}
+
+#tabl .typeahead__item a {
+    overflow: hidden;
+}
+
+/* cancel button */
+#tabl .typeahead__cancel-button {
+    position: absolute;
+    right: 10px;
+}
+
+/* submit button */
+#tabl .typeahead__button {
+    display: none;
+}
+
+/* query input */
+#tabl .tabl__query {
+    padding: 0 10px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.4);
+}

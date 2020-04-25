@@ -74,6 +74,10 @@ class Tabl_Admin {
 		 */
 
 		wp_enqueue_style( $this->tabl, plugin_dir_url( __FILE__ ) . 'css/tabl-admin.css', array(), $this->version, 'all' );
+		
+		// 3rd party
+		//wp_enqueue_style( 'jquery-typeahead-styles', plugin_dir_url( __FILE__ ) . 'css/jquery.typeahead.min.css', array(), '2.11.0', 'all' );
+		wp_enqueue_style( 'tabl-typeahead-styles', plugin_dir_url( __FILE__ ) . 'css/tabl-typeahead.css', array(), '2.11.0', 'all' );
 
 	}
 
@@ -98,6 +102,8 @@ class Tabl_Admin {
 
 		wp_enqueue_script( $this->tabl, plugin_dir_url( __FILE__ ) . 'js/tabl-admin.js', array( 'jquery' ), $this->version, false );
 
+		// 3rd party
+		wp_enqueue_script( 'jquery-typeahead-scripts', plugin_dir_url( __FILE__ ) . 'js/jquery.typeahead.min.js', array( 'jquery' ), $this->version, false );
 	}
 
 
@@ -108,9 +114,21 @@ class Tabl_Admin {
 			'parent' 	=> 'top-secondary',
 			'title' => 
 				'
-					<form class="tabl__form">
-						<input type="text" placeholder="Your target" id="tabl-query" class="tabl__query" />
-						<input type="submit" value="Jump to" class="tabl__submit" />
+					<form id="tabl" class="tabl__form">
+						<div class="typeahead__container">
+							<div class="typeahead__field">
+								<div class="typeahead__query">
+									<input class="js-typeahead tabl__query"
+										name="q"
+										autocomplete="off">
+								</div>
+								<div class="typeahead__button">
+									<button type="submit">
+										<span class="typeahead__search-icon"></span>
+									</button>
+								</div>
+							</div>
+						</div>
 					</form>
 				'
 
