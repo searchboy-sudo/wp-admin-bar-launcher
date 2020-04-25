@@ -100,4 +100,31 @@ class Tabl_Admin {
 
 	}
 
+
+	public function add_launcher_to_admin_bar($admin_bar) {
+
+		/* $admin_bar->add_menu( array(
+			'id'    => 'my-item',
+			'title' => 'My Item',
+			'href'  => '#',
+			'meta'  => array(
+				'title' => __('My Item'),            
+			),
+		)); */
+
+		$admin_bar->add_menu( array(
+			'id' 		=> 'wpse-form-in-admin-bar',
+			'parent' 	=> 'top-secondary',
+			'title' => 
+				'
+					<form class="tabl__form">
+						<input type="text" placeholder="Your target" class="tabl__query" />
+						<input type="submit" value="Jump to" class="tabl__submit" />
+					</form>
+				'
+
+		));
+		
+	} // end add_launcher_to_admin_bar
+
 }
